@@ -1,0 +1,807 @@
+{
+  "value62": [
+    {
+      "num": 218
+    },
+    {
+      "num": 8
+    },
+    {
+      "num": 4
+    },
+    {
+      "num": 108
+    }
+  ],
+  "value5": [
+    {
+      "province": "黑龙江",
+      "sale_num": 9
+    },
+    {
+      "province": "吉林",
+      "sale_num": 10
+    },
+    {
+      "province": "山西",
+      "sale_num": 13
+    },
+    {
+      "province": "河南",
+      "sale_num": 13
+    },
+    {
+      "province": "山东",
+      "sale_num": 13
+    },
+    {
+      "province": "北京市",
+      "sale_num": 13
+    },
+    {
+      "province": "河北",
+      "sale_num": 14
+    },
+    {
+      "province": "西藏",
+      "sale_num": 14
+    },
+    {
+      "province": "云南",
+      "sale_num": 15
+    },
+    {
+      "province": "台湾",
+      "sale_num": 15
+    },
+    {
+      "province": "澳门",
+      "sale_num": 15
+    },
+    {
+      "province": "安徽",
+      "sale_num": 16
+    },
+    {
+      "province": "宁夏",
+      "sale_num": 17
+    },
+    {
+      "province": "海南",
+      "sale_num": 18
+    },
+    {
+      "province": "内蒙古",
+      "sale_num": 19
+    },
+    {
+      "province": "江苏",
+      "sale_num": 19
+    },
+    {
+      "province": "上海市",
+      "sale_num": 19
+    },
+    {
+      "province": "青海",
+      "sale_num": 20
+    },
+    {
+      "province": "浙江",
+      "sale_num": 22
+    },
+    {
+      "province": "陕西",
+      "sale_num": 22
+    },
+    {
+      "province": "江西",
+      "sale_num": 22
+    },
+    {
+      "province": "甘肃",
+      "sale_num": 22
+    },
+    {
+      "province": "重庆市",
+      "sale_num": 22
+    },
+    {
+      "province": "广西",
+      "sale_num": 23
+    },
+    {
+      "province": "新疆",
+      "sale_num": 23
+    },
+    {
+      "province": "四川",
+      "sale_num": 23
+    },
+    {
+      "province": "广东",
+      "sale_num": 23
+    },
+    {
+      "province": "天津市",
+      "sale_num": 25
+    },
+    {
+      "province": "湖北",
+      "sale_num": 26
+    },
+    {
+      "province": "辽宁",
+      "sale_num": 27
+    },
+    {
+      "province": "贵州",
+      "sale_num": 27
+    },
+    {
+      "province": "福建",
+      "sale_num": 29
+    },
+    {
+      "province": "湖南",
+      "sale_num": 29
+    },
+    {
+      "province": "香港",
+      "sale_num": 35
+    }
+  ],
+  "value61": [
+    {
+      "num": 41
+    },
+    {
+      "num": 12
+    },
+    {
+      "num": 4
+    },
+    {
+      "num": 5
+    }
+  ],
+  "value2": [
+    {
+      "gender": "0",
+      "num": 2896,
+      "action": "0"
+    },
+    {
+      "gender": "0",
+      "num": 226,
+      "action": "2"
+    },
+    {
+      "gender": "0",
+      "num": 180,
+      "action": "3"
+    },
+    {
+      "gender": "1",
+      "num": 2924,
+      "action": "0"
+    },
+    {
+      "gender": "1",
+      "num": 220,
+      "action": "2"
+    },
+    {
+      "gender": "1",
+      "num": 175,
+      "action": "3"
+    },
+    {
+      "gender": "2",
+      "num": 2919,
+      "action": "0"
+    },
+    {
+      "gender": "2",
+      "num": 226,
+      "action": "2"
+    },
+    {
+      "gender": "2",
+      "num": 222,
+      "action": "3"
+    }
+  ],
+  "value1": [
+    {
+      "num": 1669,
+      "action": "0"
+    },
+    {
+      "num": 233,
+      "action": "2"
+    },
+    {
+      "num": 21,
+      "action": "3"
+    }
+  ],
+  "value4": [
+    {
+      "sale_num": 51,
+      "cat_id": "1213"
+    },
+    {
+      "sale_num": 42,
+      "cat_id": "267"
+    },
+    {
+      "sale_num": 24,
+      "cat_id": "407"
+    },
+    {
+      "sale_num": 16,
+      "cat_id": "1401"
+    },
+    {
+      "sale_num": 14,
+      "cat_id": "602"
+    }
+  ],
+  "value3": [
+    {
+      "age_range": "0",
+      "gender": "0",
+      "num": 24
+    },
+    {
+      "age_range": "1",
+      "gender": "0",
+      "num": 24
+    },
+    {
+      "age_range": "2",
+      "gender": "0",
+      "num": 41
+    },
+    {
+      "age_range": "3",
+      "gender": "0",
+      "num": 22
+    },
+    {
+      "age_range": "4",
+      "gender": "0",
+      "num": 25
+    },
+    {
+      "age_range": "5",
+      "gender": "0",
+      "num": 34
+    },
+    {
+      "age_range": "6",
+      "gender": "0",
+      "num": 28
+    },
+    {
+      "age_range": "7",
+      "gender": "0",
+      "num": 28
+    },
+    {
+      "age_range": "0",
+      "gender": "1",
+      "num": 23
+    },
+    {
+      "age_range": "1",
+      "gender": "1",
+      "num": 31
+    },
+    {
+      "age_range": "2",
+      "gender": "1",
+      "num": 32
+    },
+    {
+      "age_range": "3",
+      "gender": "1",
+      "num": 28
+    },
+    {
+      "age_range": "4",
+      "gender": "1",
+      "num": 29
+    },
+    {
+      "age_range": "5",
+      "gender": "1",
+      "num": 26
+    },
+    {
+      "age_range": "6",
+      "gender": "1",
+      "num": 30
+    },
+    {
+      "age_range": "7",
+      "gender": "1",
+      "num": 21
+    },
+    {
+      "age_range": "0",
+      "gender": "2",
+      "num": 27
+    },
+    {
+      "age_range": "1",
+      "gender": "2",
+      "num": 34
+    },
+    {
+      "age_range": "2",
+      "gender": "2",
+      "num": 32
+    },
+    {
+      "age_range": "3",
+      "gender": "2",
+      "num": 33
+    },
+    {
+      "age_range": "4",
+      "gender": "2",
+      "num": 24
+    },
+    {
+      "age_range": "5",
+      "gender": "2",
+      "num": 25
+    },
+    {
+      "age_range": "6",
+      "gender": "2",
+      "num": 29
+    },
+    {
+      "age_range": "7",
+      "gender": "2",
+      "num": 22
+    }
+  ],
+  "value32": [
+    {
+      "age_range": "0",
+      "gender": "0",
+      "num": 349,
+      "action": "0"
+    },
+    {
+      "age_range": "0",
+      "gender": "0",
+      "num": 24,
+      "action": "2"
+    },
+    {
+      "age_range": "0",
+      "gender": "0",
+      "num": 14,
+      "action": "3"
+    },
+    {
+      "age_range": "1",
+      "gender": "0",
+      "num": 361,
+      "action": "0"
+    },
+    {
+      "age_range": "1",
+      "gender": "0",
+      "num": 24,
+      "action": "2"
+    },
+    {
+      "age_range": "1",
+      "gender": "0",
+      "num": 26,
+      "action": "3"
+    },
+    {
+      "age_range": "2",
+      "gender": "0",
+      "num": 366,
+      "action": "0"
+    },
+    {
+      "age_range": "2",
+      "gender": "0",
+      "num": 41,
+      "action": "2"
+    },
+    {
+      "age_range": "2",
+      "gender": "0",
+      "num": 24,
+      "action": "3"
+    },
+    {
+      "age_range": "3",
+      "gender": "0",
+      "num": 363,
+      "action": "0"
+    },
+    {
+      "age_range": "3",
+      "gender": "0",
+      "num": 22,
+      "action": "2"
+    },
+    {
+      "age_range": "3",
+      "gender": "0",
+      "num": 17,
+      "action": "3"
+    },
+    {
+      "age_range": "4",
+      "gender": "0",
+      "num": 353,
+      "action": "0"
+    },
+    {
+      "age_range": "4",
+      "gender": "0",
+      "num": 25,
+      "action": "2"
+    },
+    {
+      "age_range": "4",
+      "gender": "0",
+      "num": 30,
+      "action": "3"
+    },
+    {
+      "age_range": "5",
+      "gender": "0",
+      "num": 342,
+      "action": "0"
+    },
+    {
+      "age_range": "5",
+      "gender": "0",
+      "num": 34,
+      "action": "2"
+    },
+    {
+      "age_range": "5",
+      "gender": "0",
+      "num": 26,
+      "action": "3"
+    },
+    {
+      "age_range": "6",
+      "gender": "0",
+      "num": 375,
+      "action": "0"
+    },
+    {
+      "age_range": "6",
+      "gender": "0",
+      "num": 28,
+      "action": "2"
+    },
+    {
+      "age_range": "6",
+      "gender": "0",
+      "num": 22,
+      "action": "3"
+    },
+    {
+      "age_range": "7",
+      "gender": "0",
+      "num": 387,
+      "action": "0"
+    },
+    {
+      "age_range": "7",
+      "gender": "0",
+      "num": 28,
+      "action": "2"
+    },
+    {
+      "age_range": "7",
+      "gender": "0",
+      "num": 21,
+      "action": "3"
+    },
+    {
+      "age_range": "0",
+      "gender": "1",
+      "num": 358,
+      "action": "0"
+    },
+    {
+      "age_range": "0",
+      "gender": "1",
+      "num": 23,
+      "action": "2"
+    },
+    {
+      "age_range": "0",
+      "gender": "1",
+      "num": 18,
+      "action": "3"
+    },
+    {
+      "age_range": "1",
+      "gender": "1",
+      "num": 400,
+      "action": "0"
+    },
+    {
+      "age_range": "1",
+      "gender": "1",
+      "num": 31,
+      "action": "2"
+    },
+    {
+      "age_range": "1",
+      "gender": "1",
+      "num": 25,
+      "action": "3"
+    },
+    {
+      "age_range": "2",
+      "gender": "1",
+      "num": 378,
+      "action": "0"
+    },
+    {
+      "age_range": "2",
+      "gender": "1",
+      "num": 32,
+      "action": "2"
+    },
+    {
+      "age_range": "2",
+      "gender": "1",
+      "num": 23,
+      "action": "3"
+    },
+    {
+      "age_range": "3",
+      "gender": "1",
+      "num": 344,
+      "action": "0"
+    },
+    {
+      "age_range": "3",
+      "gender": "1",
+      "num": 28,
+      "action": "2"
+    },
+    {
+      "age_range": "3",
+      "gender": "1",
+      "num": 21,
+      "action": "3"
+    },
+    {
+      "age_range": "4",
+      "gender": "1",
+      "num": 339,
+      "action": "0"
+    },
+    {
+      "age_range": "4",
+      "gender": "1",
+      "num": 29,
+      "action": "2"
+    },
+    {
+      "age_range": "4",
+      "gender": "1",
+      "num": 19,
+      "action": "3"
+    },
+    {
+      "age_range": "5",
+      "gender": "1",
+      "num": 357,
+      "action": "0"
+    },
+    {
+      "age_range": "5",
+      "gender": "1",
+      "num": 26,
+      "action": "2"
+    },
+    {
+      "age_range": "5",
+      "gender": "1",
+      "num": 29,
+      "action": "3"
+    },
+    {
+      "age_range": "6",
+      "gender": "1",
+      "num": 389,
+      "action": "0"
+    },
+    {
+      "age_range": "6",
+      "gender": "1",
+      "num": 30,
+      "action": "2"
+    },
+    {
+      "age_range": "6",
+      "gender": "1",
+      "num": 20,
+      "action": "3"
+    },
+    {
+      "age_range": "7",
+      "gender": "1",
+      "num": 359,
+      "action": "0"
+    },
+    {
+      "age_range": "7",
+      "gender": "1",
+      "num": 21,
+      "action": "2"
+    },
+    {
+      "age_range": "7",
+      "gender": "1",
+      "num": 20,
+      "action": "3"
+    },
+    {
+      "age_range": "0",
+      "gender": "2",
+      "num": 367,
+      "action": "0"
+    },
+    {
+      "age_range": "0",
+      "gender": "2",
+      "num": 27,
+      "action": "2"
+    },
+    {
+      "age_range": "0",
+      "gender": "2",
+      "num": 31,
+      "action": "3"
+    },
+    {
+      "age_range": "1",
+      "gender": "2",
+      "num": 383,
+      "action": "0"
+    },
+    {
+      "age_range": "1",
+      "gender": "2",
+      "num": 34,
+      "action": "2"
+    },
+    {
+      "age_range": "1",
+      "gender": "2",
+      "num": 30,
+      "action": "3"
+    },
+    {
+      "age_range": "2",
+      "gender": "2",
+      "num": 365,
+      "action": "0"
+    },
+    {
+      "age_range": "2",
+      "gender": "2",
+      "num": 32,
+      "action": "2"
+    },
+    {
+      "age_range": "2",
+      "gender": "2",
+      "num": 35,
+      "action": "3"
+    },
+    {
+      "age_range": "3",
+      "gender": "2",
+      "num": 364,
+      "action": "0"
+    },
+    {
+      "age_range": "3",
+      "gender": "2",
+      "num": 33,
+      "action": "2"
+    },
+    {
+      "age_range": "3",
+      "gender": "2",
+      "num": 25,
+      "action": "3"
+    },
+    {
+      "age_range": "4",
+      "gender": "2",
+      "num": 373,
+      "action": "0"
+    },
+    {
+      "age_range": "4",
+      "gender": "2",
+      "num": 24,
+      "action": "2"
+    },
+    {
+      "age_range": "4",
+      "gender": "2",
+      "num": 22,
+      "action": "3"
+    },
+    {
+      "age_range": "5",
+      "gender": "2",
+      "num": 346,
+      "action": "0"
+    },
+    {
+      "age_range": "5",
+      "gender": "2",
+      "num": 25,
+      "action": "2"
+    },
+    {
+      "age_range": "5",
+      "gender": "2",
+      "num": 24,
+      "action": "3"
+    },
+    {
+      "age_range": "6",
+      "gender": "2",
+      "num": 371,
+      "action": "0"
+    },
+    {
+      "age_range": "6",
+      "gender": "2",
+      "num": 29,
+      "action": "2"
+    },
+    {
+      "age_range": "6",
+      "gender": "2",
+      "num": 23,
+      "action": "3"
+    },
+    {
+      "age_range": "7",
+      "gender": "2",
+      "num": 350,
+      "action": "0"
+    },
+    {
+      "age_range": "7",
+      "gender": "2",
+      "num": 22,
+      "action": "2"
+    },
+    {
+      "age_range": "7",
+      "gender": "2",
+      "num": 32,
+      "action": "3"
+    }
+  ]
+}

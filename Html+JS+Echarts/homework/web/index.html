@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝大数据分析</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/layui.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">淘宝大数据分析结果展示</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">男女买家对比 </a>
+                    <dl class="layui-nav-child">
+                        <dd><a id="second" title="男女买家消费行为(包括交易)对比">男女买家消费行为(包括交易)对比</a></dd>
+                        <dd><a id="third" title="男女买家各个年龄段交易对比">男女买家各个年龄段消费行为对比</a></dd>
+                        <dd><a id="third_two" title="男女买家各个年龄段消费行为(包括交易)对比">男女买家各个年龄段消费行为(包括交易)对比</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">关于双十一的展示 </a>
+                    <dl class="layui-nav-child">
+                        <dd><a id="first">所有买家消费行为比例</a></dd>
+                        <dd><a id="sixth_one" title="对于买家：双十一的购买行为占消费行为的比例的分布情况">对于买家：双十一的购买行为占消费行为的比例的分布情况</a></dd>
+                        <dd><a id="sixth_two" title="对于卖家：双十一销售量占总销售量比例的分布情况">对于卖家：双十一销售量占总销售量比例的分布情况</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">其他 </a>
+                    <dl class="layui-nav-child">
+                        <dd><a id="fourth">获取销量前五的商品类别</a></dd>
+                        <dd><a id="fifth">各个省份的总成交量对比</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" >
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <div id="main" class="layui-card-body" style="padding: 20px;height: 530px;" ></div>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © zsl-大数据原理及应用大作业
+    </div>r
+</div>
+
+
+</body>
+<script src="./js/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+</script>
+<script src="js/china.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/jquery.js"></script>
+<scriptz src="js/echarts.js"></scriptz>
+<script src="./js/china.js" charset="utf-8"></script>
+<script>
+    //js 页面刷新之后
+    window.onload = function () {
+        $("#main").append("<h1>Hello，这里是快速预览：</h1><br>");
+
+        $("#main").append("<h2>男女买家对比</h2><br>");
+        $("#main").append("<h3>--男女买家消费行为(包括交易)对比</h3><br>");
+        $("#main").append("<h3>--男女买家各个年龄段消费行为对比</h3><br>");
+        $("#main").append("<h3>--男女买家各个年龄段消费行为(包括交易)对比</h3><br>");
+
+        $("#main").append("<h2>关于双十一的展示</h2><br>");
+        $("#main").append("<h3>--所有买家消费行为比例</h3><br>");
+        $("#main").append("<h3>--对于买家：双十一的购买行为占消费行为的比例的分布情况</h3><br>");
+        $("#main").append("<h3>--对于卖家：双十一销售量占总销售量比例的分布情况</h3><br>");
+
+        $("#main").append("<h2>其他</h2><br>");
+        $("#main").append("<h3>--获取销量前五的商品类别</h3><br>");
+        $("#main").append("<h3>--各个省份的总成交量对比  <i style='color: pink'>(-.-快在右边点击你想知道的信息吧)</i> </h3><br>");
+
+
+    }
+
+</script>
+<script type="text/javascript">
+
+    $('#fifth').click(function () {
+        $.ajax({
+            url: "total_reslut.json",//json文件位置
+            type: "GET",//请求方式为get
+            dataType: "json", //返回数据格式为json
+
+            success: function (data) {
+                // 基于准备好的dom，初始化echarts实例
+                var div_main = document.getElementById('main')
+                div_main.removeAttribute("_echarts_instance_");
+                var myChart = echarts.init(div_main);
+//                alert("ook")
+                var data_ = []
+                //each循环 使用$.each方法遍历返回的数据date
+                $.each(data.value5, function (i, item) {
+                    var pro = item.province
+                    var n =pro.replace(/市/i,"");
+                    data_.push({ name:n,value:item.sale_num })
+                })
+                var yData = [];
+                var barData = [];
+                var tmp = [{name:"",value:0},{name:"",value:0},{name:"",value:0},{name:"",value:0},{name:"",value:0}]
+                var sum = 0
+                for (var j = 0; j< data_.length; j++) {
+                    sum +=data_[j].value
+                }
+                for (var j = 0; j< data_.length; j++) {
+                    data_[j].value = parseFloat(data_[j].value/sum*100).toFixed(2) //保存两位小数
+                }
+                for (var i = 0; i < data_.length; i++) {
+                    for(var k = 0;k<tmp.length;k++){
+                        if(tmp[k].value<data_[i].value) {
+                            if((k+1)<tmp.length){tmp[k+1]=tmp[k]}
+                            tmp[k] = data_[i];
+                            break;
+                        }
+                    }
+                }
+
+                for (var i = 0; i < tmp.length; i++) {
+                    barData.push(tmp[i]);
+                    yData.push(i + tmp[i].name);
+                }
+//                alert(barData[0])
+                var option = {
+                    title: [{
+                        text:'各个省份的总成交量对比',
+                        textStyle: {
+                            color: '#2D3E53',
+                            fontSize: 18,
+                        },
+                        show: true,
+                        subtext: '包含排名情况，数据来自2015 年双 11 前 6 个月(包含双 11)的交易数据'
+
+                    }],
+                    tooltip: {
+                        show: true,
+                        formatter: function(params) {
+                            return params.name + '：' + params.data['value'] + '%'
+                        },
+                    },
+                    visualMap: {
+                        type: 'continuous',
+                        orient: 'horizontal',
+                        itemWidth: 10,
+                        itemHeight: 80,
+                        text: ['高', '低'],
+                        showLabel: true,
+                        seriesIndex: [0],
+                        min: 0,
+                        max: 2,
+                        inRange: {
+                            color: ['#6FCF6A', '#FFFD64', '#FF5000']
+                        },
+                        textStyle: {
+                            color: '#7B93A7'
+                        },
+                        bottom: 30,
+                        left: 'left',
+                    },
+                    grid: {
+                        right: 10,
+                        top: 135,
+                        bottom: 100,
+                        width: '15%'
+                    },
+                    xAxis: {
+                        show: false
+                    },
+                    yAxis: {
+                        type: 'category',
+                        inverse: true,
+                        nameGap: 16,
+                        axisLine: {
+                            show: false,
+                            lineStyle: {
+                                color: '#ddd'
+                            }
+                        },
+                        axisTick: {
+                            show: false,
+                            lineStyle: {
+                                color: '#ddd'
+                            }
+                        },
+                        axisLabel: {
+                            interval: 0,
+                            margin: 85,
+                            textStyle: {
+                                color: '#455A74',
+                                align: 'left',
+                                fontSize: 14
+                            },
+                            rich: {
+                                a: {
+                                    color: '#fff',
+                                    backgroundColor: '#FAAA39',
+                                    width: 20,
+                                    height: 20,
+                                    align: 'center',
+                                    borderRadius: 2
+                                },
+                                b: {
+                                    color: '#f9ffdd',
+                                    backgroundColor: '#fada7d',
+                                    width: 20,
+                                    height: 20,
+                                    align: 'center',
+                                    borderRadius: 2
+                                }
+                            },
+                            formatter: function(params) {
+                                if (parseInt(params.slice(0, 1)) < 3) {
+                                    return [
+                                        '{a|' + (parseInt(params.slice(0, 1)) + 1) + '}' + '  ' + params.slice(1)
+                                    ].join('\n')
+                                } else {
+                                    return [
+                                        '{b|' + (parseInt(params.slice(0, 1)) + 1) + '}' + '  ' + params.slice(1)
+                                    ].join('\n')
+                                }
+                            }
+                        },
+                        data: yData
+                    },
+                    geo: {
+                        map: 'china',
+                        roam: false,
+                        zoom:1.23,
+                        label: {
+                            normal: {
+                                show: true,
+                                fontSize:'10',
+                                color: 'rgba(0,0,0,0.7)'
+                            }
+                        },
+                        itemStyle: {
+                            normal:{
+                                borderColor: 'rgba(0, 0, 0, 0.2)'
+                            },
+                            emphasis:{
+                                areaColor: '#F3B329',
+                                shadowOffsetX: 0,
+                                shadowOffsetY: 0,
+                                shadowBlur: 20,
+                                borderWidth: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'mapSer',
+                        type: 'map',
+                        roam: false,
+                        geoIndex: 0,
+                        label: {
+                            show: false,
+                        },
+                        data: data_
+                    }, {
+                        name: 'barSer',
+                        type: 'bar',
+                        roam: false,
+                        visualMap: false,
+                        zlevel: 2,
+                        barMaxWidth: 8,
+                        barGap: 0,
+                        itemStyle: {
+                            normal: {
+                                color: function(params) {
+                                    // build a color map as your need.
+                                    var colorList = [{
+                                        colorStops: [{
+                                            offset: 0,
+                                            color: '#FFD119' // 0% 处的颜色
+                                        }, {
+                                            offset: 1,
+                                            color: '#FFAC4C' // 100% 处的颜色
+                                        }]
+                                    },
+                                        {
+                                            colorStops: [{
+                                                offset: 0,
+                                                color: '#fae87c' // 0% 处的颜色
+                                            }, {
+                                                offset: 1,
+                                                color: '#fabb08' // 100% 处的颜色
+                                            }]
+                                        }
+                                    ];
+                                    if (params.dataIndex < 3) {
+                                        return colorList[0]
+                                    } else {
+                                        return colorList[1]
+                                    }
+                                },
+                                barBorderRadius: 15
+                            }
+                        },
+                        data: barData
+                    }]
+                };
+// 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option)
+            }
+        })
+    })
+    $('#first').click(function () {
+        $.ajax({
+            url: "total_reslut.json",//json文件位置
+            type: "GET",//请求方式为get
+            dataType: "json", //返回数据格式为json
+
+            success: function (data) {
+
+                // 基于准备好的dom，初始化echarts实例
+                var div_main = document.getElementById('main')
+                div_main.removeAttribute("_echarts_instance_");
+                var myChart = echarts.init(div_main);
+//                alert("ook")
+                var data_ = []
+                //each循环 使用$.each方法遍历返回的数据date
+                $.each(data.value1, function (i, item) {
+                    var name_ = ""
+                    if (item.action == "0") name_ = "点击商品"
+                    if (item.action == "1") name_ = "加入购物车"
+                    if (item.action == "2") name_ = "购买商品"
+                    if (item.action == "3") name_ = "关注商品"
+                    data_.push({value: item.num, name: name_})
+                })
+                option = {
+                    title: {
+                        text: '所有买家消费行为比例',
+                        subtext: '数据来自2015 年双 11 前 6 个月(包含双 11)的交易数据',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        top: 100,
+                        left: 300,
+                        data: ['点击商品', '加入购物车', '购买商品', '关注商品']
+                    },
+                    series: [
+                        {
+                            name: '数量',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '60%'],
+                            data: data_,
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option)
+            }
+        })
+    })
+    $('#second').click(function () {
+
+        $.ajax({
+            url: "total_reslut.json",//json文件位置
+            type: "GET",//请求方式为get
+            dataType: "json", //返回数据格式为json
+            success: function (data) {
+                // 基于准备好的dom，初始化echarts实例
+                var div_main = document.getElementById('main')
+                div_main.removeAttribute("_echarts_instance_");
+                var myChart = echarts.init(div_main);
+
+                var posList = [
+                    'left', 'right', 'top', 'bottom',
+                    'inside',
+                    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+                    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+                ];
+                var app = {}
+                app.configParameters = {
+                    rotate: {
+                        min: -90,
+                        max: 90
+                    },
+                    align: {
+                        options: {
+                            left: 'left',
+                            center: 'center',
+                            right: 'right'
+                        }
+                    },
+                    verticalAlign: {
+                        options: {
+                            top: 'top',
+                            middle: 'middle',
+                            bottom: 'bottom'
+                        }
+                    },
+                    position: {
+                        options: echarts.util.reduce(posList, function (map, pos) {
+                            map[pos] = pos;
+                            return map;
+                        }, {})
+                    },
+                    distance: {
+                        min: 0,
+                        max: 100
+                    }
+                };
+
+                app.config = {
+                    rotate: 90,
+                    align: 'left',
+                    verticalAlign: 'middle',
+                    position: 'insideBottom',
+                    distance: 15,
+                    onChange: function () {
+                        var labelOption = {
+                            normal: {
+                                rotate: app.config.rotate,
+                                align: app.config.align,
+                                verticalAlign: app.config.verticalAlign,
+                                position: app.config.position,
+                                distance: app.config.distance
+                            }
+                        };
+                        myChart.setOption({
+                            series: [{
+                                label: labelOption
+                            }, {
+                                label: labelOption
+                            }]
+                        });
+                    }
+                };
+
+
+                var labelOption = {
+                    show: true,
+                    position: app.config.position,
+                    distance: app.config.distance,
+                    align: app.config.align,
+                    verticalAlign: app.config.verticalAlign,
+                    rotate: app.config.rotate,
+                    formatter: '{c}  {name|{a}}',
+                    fontSize: 16,
+                    rich: {
+                        name: {
+                            textBorderColor: '#fff'
+                        }
+                    }
+                };
+                var se = []
+                var d1 = [0, 0, 0, 0]
+                var d2 = [0, 0, 0, 0]
+
+                $.each(data.value2, function (i, item) {
+                    if (item.gender == "0") {
+                        d1[parseInt(item.action)] = parseInt(item.num)
+                    } else {
+                        d2[parseInt(item.action)] = parseInt(item.num)
+                    }
+                })
+                se.push({
+                    name: "女",
+                    type: 'bar',
+                    barGap: 0,
+                    label: labelOption,
+                    data: d1
+                })
+                se.push({
+                    name: "男",
+                    type: 'bar',
+                    label: labelOption,
+                    data: d2
+                })
+
+                option = {
+                    title: {
+                        text: '男女买家消费行为对比（包括，男女买家交易对比）',
+                        subtext: '数据来自2015 年双 11 前 6 个月(包含双 11)的交易数据',
+                        left: 'center'
+                    },
+                    color: ['#003366', '#006699'],
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    },
+                    legend: {
+                        bottom: 10,
+                        left: 'center',
+                        data: ['女', '男']
+                    },
+                    toolbox: {
+                        show: true,
+                        orient: 'vertical',
+                        left: 'right',
+                        top: 'center',
+                        feature: {
+                            mark: {show: true},
+                            dataView: {show: true, readOnly: false},
+                            magicType: {show: true, type: ['line', 'bar']},
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            axisTick: {show: false},
+                            data: ['点击商品', '商品加入购物车', '购买商品', '关注商品']
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: se
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option)
+            }
+        })
+    })
+    $('#third').click(function () {
+        $.ajax({
+            url: "total_reslut.json",//json文件位置
+            type: "GET",//请求方式为get
+            dataType: "json", //返回数据格式为json
+
+            success: function (data) {
+                // 基于准备好的dom，初始化echarts实例
+                var div_main = document.getElementById('main')
+                div_main.removeAttribute("_echarts_instance_");
+                var myChart = echarts.init(div_main);
+//                alert("ook")
+                var se = []
+                var data_ = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
+
+                //each循环 使用$.each方法遍历返回的数据date
+                $.each(data.value3, function (i, item) {
+                    var ag = 0
+                    if (item.age_range == "8") {
+                        ag = 6
+                    }
+                    else if (item.age_range == "0") {
+                        ag = 7
+                    }
+                    else {
+                        ag = parseInt(item.age_range) - 1
+                    }
+                    if (item.gender == "0") data_[0][ag] = parseInt(item.num)
+                    if (item.gender == "1") data_[1][ag] = parseInt(item.num)
+                })
+                se.push( {
+                    label: {
+                        show: true,             //显示数字
+                    },
+                    name: '女',
+                    type: 'line',
+//                    stack: '总量',
+                    data: data_[0]
+                })
+                se.push( {
+                    label: {
+                        show: true,             //显示数字
+                    },
+                    name: '男',
+                    type: 'line',
+//                    stack: '总量',
+                    data: data_[1]
+                })
+
+
+                option = {
+                    title: {
+                        text: '男女买家各个年龄段交易对比',
+                        subtext: '数据来自2015 年双 11 前 6 个月(包含双 11)的交易数据',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        bottom: 0,
+                        left: 'center',
+                        padding:[100,0,0,0],
+                        data: ['男', '女']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data:['年龄<18', '年龄：18~24', '年龄：25,29'
+                            , '年龄：30~34', '年龄：35~39', '年龄：40~49', '年龄>=50', '年龄未知']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: se
+                };
+
+// 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option)
+            }
+        })
+    })
+    $('#third_two').click(function () {
+        $.ajax({
+            url: "total_reslut.json",//json文件位置
+            type: "GET",//请求方式为get
+            dataType: "json", //返回数据格式为json
+
+            success: function (data) {
+                // 基于准备好的dom，初始化echarts实例
+                var div_main = document.getElementById('main')
+                div_main.removeAttribute("_echarts_instance_");
+                var myChart = echarts.init(div_main);
+//                alert("ook")
+                var se = []
+                var data_m = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
+                var data_f = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
+
+                //each循环 使用$.each方法遍历返回的数据date
+                $.each(data.value32, function (i, item) {
+                    var ag = 0
+                    if (item.age_range == "8") {
+                        ag = 6
+                    }
+                    else if (item.age_range == "0") {
+                        ag = 7
+                    }
+                    else {
+                        ag = parseInt(item.age_range) - 1
+                    }
+                    if (item.gender == "0") data_m[parseInt(item.action)][ag] = parseInt(item.num)
+                    if (item.gender == "1") data_f[parseInt(item.action)][ag] = parseInt(item.num)
+                })
+
+                for (i=0;i<4;i++) {
+                    var name_1 = ""
+                    if (i==0) name_1 = "点击商品"
+                    if (i==1) name_1 = "加入购物车"
+                    if (i==2) name_1 = "购买商品"
+                    if (i==3) name_1 = "关注商品"
+
+                    se.push({
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        name: name_1,
+                        type: 'bar',
+                        stack: '男',
+                        data: data_f[i]
+                    })
+//                    alert("ok")
+                }
+
+                for (i=0;i<4;i++) {
+                    var name_ = ""
+                    if (i==0) name_ = "点击商品"
+                    if (i==1) name_ = "加入购物车"
+                    if (i==2) name_ = "购买商品"
+                    if (i==3) name_ = "关注商品"
+                    se.push({
+                        label: {
+                            show: true,             //显示数字
+                            position: 'insideRight'
+                        },
+                        name: name_,
+                        type: 'bar',
+                        stack: '女',
+                        data: data_m[i]
+                    })
+
+                }
+
+                option = {
+                    title: {
+                        text: '男女买家各个年龄段消费行为(包括交易)对比',
+                        subtext: '数据来自2015 年双 11 前 6 个月(包含双 11)的交易数据；左边：男；右边：女',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    legend: {
+                        bottom: 0,
+                        left: 'center',
+                        padding:[100,0,0,0],
+                        data: ['购买商品', '加入购物车', '点击商品', '关注商品']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data: ['年龄<18', '年龄：18~24', '年龄：25,29', '年龄：30~34', '年龄：35~39', '年龄：40~49', '年龄>=50', '年龄未知']
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: se
+                };
+// 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option)
+            }
+        })
+    })
+    $('#fourth').click(function () {
+        $.ajax({
+            url: "total_reslut.json",//json文件位置
+            type: "GET",//请求方式为get
+            dataType: "json", //返回数据格式为json
+
+            success: function (data) {
+                // 基于准备好的dom，初始化echarts实例
+                var div_main = document.getElementById('main')
+                div_main.removeAttribute("_echarts_instance_");
+                var myChart = echarts.init(div_main);
+//                alert("ook")
+                var data_ = []
+                var name_ = []
+                //each循环 使用$.each方法遍历返回的数据date
+                $.each(data.value4, function (i, item) {
+                    data_.push(item.sale_num)
+                    name_.push(item.cat_id)
+                })
+                option = {
+                    legend: {
+                        top: -80,
+                        left: 1000,
+                        padding:[100,0,0,0],
+                        data: ['销量']
+                    },
+                    title: {
+                        text: '获取销量前五的商品类别',
+                        subtext: '数据来自2015 年双 11 前 6 个月(包含双 11)的交易数据',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'value'
+                    },
+                    yAxis: {
+                        type: 'category',
+                        data: name_
+                    },
+                    series: [
+                        {
+                            name: '销量',
+                            type: 'bar',
+                            label: {
+                                show: true,
+                                position: 'insideRight'
+                            },
+                            data: data_
+                        }
+
+                    ]
+                };
+// 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option)
+            }
+        })
+    })
+    $('#sixth_one').click(function () {
+        $.ajax({
+            url: "total_reslut.json",//json文件位置
+            type: "GET",//请求方式为get
+            dataType: "json", //返回数据格式为json
+
+            success: function (data) {
+
+                // 基于准备好的dom，初始化echarts实例
+                var div_main = document.getElementById('main')
+                div_main.removeAttribute("_echarts_instance_");
+                var myChart = echarts.init(div_main);
+//                alert("ook")
+                var data_ = []
+                //each循环 使用$.each方法遍历返回的数据date
+                $.each(data.value61, function (i, item) {
+                    var name_ = ""
+                    if (i == 0) name_ = "小于等于25%"
+                    if (i == 1) name_ = "25%~50%"
+                    if (i == 2) name_ = "50%~75%"
+                    if (i == 3) name_ = "75%~100%"
+                    data_.push({value: item.num, name: name_})
+                })
+                option = {
+                    title: {
+                        text: '对于买家：双十一的购买行为占消费行为的比例的分布情况',
+                        subtext: '数据来自2015 年双 11 前 6 个月(包含双 11)的交易数据',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        top: 100,
+                        left: 300,
+                        data: ['小于等于25%', '25%~50%', '50%~75%', '75%~100%']
+                    },
+                    series: [
+                        {
+                            name: '数量',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '60%'],
+                            data: data_,
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option)
+            }
+        })
+    })
+    $('#sixth_two').click(function () {
+        $.ajax({
+            url: "total_reslut.json",//json文件位置
+            type: "GET",//请求方式为get
+            dataType: "json", //返回数据格式为json
+
+            success: function (data) {
+
+                // 基于准备好的dom，初始化echarts实例
+                var div_main = document.getElementById('main')
+                div_main.removeAttribute("_echarts_instance_");
+                var myChart = echarts.init(div_main);
+//                alert("ook")
+                var data_ = []
+                //each循环 使用$.each方法遍历返回的数据date
+                $.each(data.value62, function (i, item) {
+                    var name_ = ""
+                    if (i == 0) name_ = "小于等于25%"
+                    if (i == 1) name_ = "25%~50%"
+                    if (i == 2) name_ = "50%~75%"
+                    if (i == 3) name_ = "75%~100%"
+                    data_.push({value: item.num, name: name_})
+                })
+                option = {
+                    title: {
+                        text: '对于卖家：双十一销售量占总销售量比例的分布情况',
+                        subtext: '数据来自2015 年双 11 前 6 个月(包含双 11)的交易数据',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        top: 100,
+                        left: 300,
+                        data: ['小于等于25%', '25%~50%', '50%~75%', '75%~100%']
+                    },
+                    series: [
+                        {
+                            name: '数量',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '60%'],
+                            data: data_,
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option)
+            }
+        })
+    })
+</script>
+</html>
